@@ -7,7 +7,7 @@
 ************************************
 
 **user-finder** is a **python** script to **automatically** search to usernames online.
-It is a **solo** project that I ([prc-github-prc](https://github.com/prc-github-prc)) developed to help OSINT investigator or pentesters to find someone online. The way that the script work will be detailed later.
+It is a **solo** project that I ([prc-github-prc](https://github.com/prc-github-prc)) developed to help OSINT investigators or pentesters to find someone online. The way that the script work will be detailed later.
 
 **********
 ## Installation and configuration :
