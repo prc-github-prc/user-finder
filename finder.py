@@ -102,7 +102,7 @@ def main() -> None:
         to_store = True
     except:
         to_store = False
-    
+
     """
     list of checked websites 
     """
@@ -128,9 +128,6 @@ def main() -> None:
                 print(string) # if the user was found on the website, we print it
                 if to_store:
                     store(string,store_file)
-            if to_store:
-                open(store_file,"w").write("")
-            
     return 
     
     
