@@ -1,5 +1,6 @@
 from sys import argv
 import requests
+import random
 
 def gen_chars_list(string:str) -> list:
     letters_and_numbers = {"a":"4","e":"3","b":"8","i":"1","o":"0"}
@@ -118,6 +119,7 @@ def main() -> None:
     for username in wordlist: # for each word into the wordlist
         print()
         print(username,end=" :\n")
+        store("",store_file)
         for key,item in sites_list.items():
             result = check_username(item, username)
             if result:
