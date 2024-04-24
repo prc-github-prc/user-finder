@@ -1,8 +1,5 @@
 from sys import argv
-import random
-import itertools
 import requests
-import time
 
 def gen_chars_list(string:str) -> list:
     letters_and_numbers = {"a":"4","e":"3","b":"8","i":"1","o":"0"}
@@ -61,7 +58,7 @@ def check_username(website:str, username:str) -> bool:
         return False
 
 
-def store(data,filename):
+def store(data:str,filename:str) -> None:
     lines = []
     try:
         with open(filename,"r") as file:
