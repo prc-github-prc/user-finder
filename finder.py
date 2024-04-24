@@ -81,9 +81,14 @@ def store(data,filename):
     return
             
 
-    
-
 def main() -> None:
+    """
+    This is the main function.
+    It generate a wordlist of potential usernames similar to the username provided by the user.
+    Then for each username, it try to find a user in every website in the list.
+    It print the positives results and if the user provided a file, it store the data into the file to.
+    """
+
     print("#### User finder ####")
     
     try:
