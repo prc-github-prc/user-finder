@@ -3,29 +3,34 @@ import requests
 import random
 
 def gen_chars_list(string:str) -> list:
+    """
+    this function take as argument the username string and return a list of chars to use in a wordlist generator
+    """
+
+    # a number and a letter can be similar and used instead of each other
     letters_and_numbers = {"a":"4","e":"3","b":"8","i":"1","o":"0"}
     numbers_and_letters = {"4":"a","3":"e","8":"b","1":"i","0":"o"}
     
-    chars_lists = []
+    chars_lists = [] # final list
     
-    for char in string:
-        char = char.lower()
-        possible_chars = [char]
+    for char in string: # for each char
+        new_char = char.lower()
+        possible_chars = [new_char] # list of possibilites to replace the char
         
         if char.upper() != char:
             possible_chars.append(char.upper())
             
         try:
-            possible_chars.append(letters_and_numbers[char])
+            possible_chars.append(letters_and_numbers[new_char])
         except:
             try:
-                possible_chars.append(numbers_and_letters[char])
+                possible_chars.append(numbers_and_letters[new_char])
             except:
                 pass
         
         chars_lists.append(possible_chars)
     
-    return chars_lists
+    return chars_lists # return 
 
 def gen_wordlist(string:str) -> list:
     """
