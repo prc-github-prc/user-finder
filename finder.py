@@ -28,7 +28,11 @@ def gen_chars_list(string:str) -> list:
     return chars_lists
 
 def gen_wordlist(string:str) -> list:
-    chars_list = gen_chars_list(string)
+    """
+    This function take as argument the username string that will be the base for the wordlist, and it returns
+    the wordlist.
+    """
+    chars_list = gen_chars_list(string) # generate a list of characters to use
     wordlist = []
     nb_words = 1
     for elt in chars_list:
@@ -47,19 +51,34 @@ def gen_wordlist(string:str) -> list:
     return [string] + wordlist
 
 def check_username(website:str, username:str) -> bool:
-    url = website + username  
+    """
+    This function takes as argument the website's url to verify and the username to try.
+    It try to access to the potential user profile.
+    If it is a success, the function returns True, else it returns False.
+    """
+    url = website + username # url to try
     
     try:
         response = requests.get(url,timeout=1)  # Make the HTTP request
         if response.status_code == 200:  # Check if the request was successful.
-            return True
+            return True # if everything is ok, returns True
         else:
-            return False
+            return False # False
     except:
-        return False
+        return False # False
 
 
 def store(data:str,filename:str) -> None:
+    """
+    This function take as argument the data the add at the end of the file and the name of the file.
+    Then it find and store the content into a list, add the data to write into this list, and write the entire list
+    into the file.
+    """
+
+    """
+    storing of the content of the file
+    """
+
     lines = []
     try:
         with open(filename,"r") as file:
@@ -70,8 +89,12 @@ def store(data:str,filename:str) -> None:
     except:
         pass
         
-    lines.append(data)
+    lines.append(data) # the data is added
     
+    """
+    all content is re-writed into the file
+    """
+
     with open(filename,"w") as file:
         for line in lines:
             file.write(f"{line}\n")
