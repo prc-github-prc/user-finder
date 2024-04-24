@@ -33,22 +33,23 @@ def gen_wordlist(string:str) -> list:
     the wordlist.
     """
     chars_list = gen_chars_list(string) # generate a list of characters to use
-    wordlist = []
+    wordlist = [] # wordlist
     nb_words = 1
     for elt in chars_list:
-        nb_words *= len(elt)
+        nb_words *= len(elt) # evaluating the final lenght of the wordlist
     
-    while len(wordlist) < nb_words -1 :
+    while len(wordlist) < nb_words -1 : # while there is new words to find
+        # we create a new word randomly
         new_word = ""
         for elt in chars_list:
             new_word += elt[random.randint(0,len(elt)-1)]
         
-        if not new_word in wordlist and new_word != string:
+        if not new_word in wordlist and new_word != string: # if this is a new word, we add it
             wordlist.append(new_word)
     
-    wordlist.sort()
+    wordlist.sort() # sort of the list
     
-    return [string] + wordlist
+    return [string] + wordlist # return
 
 def check_username(website:str, username:str) -> bool:
     """
