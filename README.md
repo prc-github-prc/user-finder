@@ -65,6 +65,7 @@ python3 finder.py <username> <save file (optional)>
 ***************
 ## How it works ? :
 
-This script work by generating a **wordlist of usernames that are similar** (to the username provided by the script use)r and try them with a **list of sites**.
+This script work by generating a **wordlist of usernames that are similar** (to the username provided by the script user) and try them with a **list of sites**. It can be useful to find "hidden accounts" because some people
+use differents **but** similar usernames with differents services.
 
 If you want more details about how the **script works**, you can just **read the code and the comments**.
