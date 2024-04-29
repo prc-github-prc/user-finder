@@ -133,29 +133,32 @@ def main() -> None:
     """
     list of checked websites 
     """
-    sites_list = {"Instagram": "https://www.instagram.com/}",
-    "Facebook": "https://www.facebook.com/",
-    "YouTube": "https://www.youtube.com/user/",
-    "Reddit": "https://www.reddit.com/user/",
-    "GitHub": "https://github.com/",
-    "Twitch": "https://www.twitch.tv/",
-    "Pinterest": "https://www.pinterest.com/",
-    "TikTok": "https://www.tiktok.com/@",
-    "Flickr": "https://www.flickr.com/photos/"}
+    sites_list = ["https://www.instagram.com/",
+        "https://www.facebook.com/",
+        "https://www.youtube.com/user/",
+        "https://www.reddit.com/user/",
+        "https://github.com/",
+        "https://www.twitch.tv/",
+        "https://www.pinterest.com/",
+        "https://www.tiktok.com/@",
+        "https://www.flickr.com/photos/"
+    ]
     
     wordlist = gen_wordlist(username) # similar usernames wordlist generation
     
     for username in wordlist: # for each word into the wordlist
         print()
         print(username,end=" :\n")
-        store("",store_file)
-        for key,item in sites_list.items():
-            result = check_username(item, username)
+        for site in sites_list:
+            result = check_username(site, username)
             if result:
-                string = f"[+] user {username} found on {key}"
+                string = f"[+] user {username} found on {site}"
                 print(string) # if the user was found on the website, we print it
                 if to_store:
                     store(string,store_file)
+        if to_store:
+            store("",store_file)
+        
     return 
     
     
