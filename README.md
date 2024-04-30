@@ -55,17 +55,17 @@ cd user-finder
 ##### 5. Utilisation (commands are the same for windows and linux) : 
 from the project clone directory (./automated-pages-explorer/) :
 ```
-python finder.py <username> <save file (optional)>
+python finder.py <username> <sites list> <generation level> <save file (optional)>
 ```
 or :
 ```
-python3 finder.py <username> <save file (optional)>
+python3 finder.py <username> <sites list> <generation level> <save file (optional)>
 ```
 
 ***************
 ## How it works ? :
 
-This script work by generating a **wordlist of usernames that are similar** (to the username provided by the script user) and try them with a **list of sites**. It can be useful to find "hidden accounts" because some people
+This script work by generating a **wordlist of usernames that are similar to the username provided by the script user** (the level of generation can be choose : 1 = only provided username, 2 = + letters and numbers, 3 = + upcase, lowcase) and try them with a **list of sites** provided by user to (default.txt can be used). It can be useful to find "hidden accounts" because some people
 use differents **but** similar usernames with differents services.
 
 If you want more details about how the **script works**, you can just **read the code and the comments**.
