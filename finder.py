@@ -2,9 +2,9 @@ from sys import argv
 import requests
 import random
 
-def gen_chars_list(string:str) -> list:
+def gen_chars_list(string:str,level:int) -> list:
     """
-    this function take as argument the username string and return a list of chars to use in a wordlist generator
+    this function take as argument the username string and the 'level' of generation. It returns a list of chars to use in a wordlist generator
     """
 
     # a number and a letter can be similar and used instead of each other
@@ -14,17 +14,21 @@ def gen_chars_list(string:str) -> list:
     chars_lists = [] # final list
     
     for char in string: # for each char
-        new_char = char.lower()
-        possible_chars = [new_char] # list of possibilites to replace the char
-        
-        if char.upper() != char:
-            possible_chars.append(char.upper())
-            
-        try:
-            possible_chars.append(letters_and_numbers[new_char])
-        except:
+        possible_chars = [char]
+
+        if char in "azertyuiopqsdfghjklmwxcvbn" or char in "AZERTYUIOPQSDFGHJKLMWXCVBN":
+            if level == 3:
+                if char == char.upper():
+                    possible_chars.append(char.lower())
+                else:
+                    possible_chars.append(char.upper())
             try:
-                possible_chars.append(numbers_and_letters[new_char])
+                possible_chars.append(letters_and_numbers[char])
+            except:
+                pass
+        else:
+            try:
+                possible_chars.append(numbers_and_letters[char])
             except:
                 pass
         
@@ -32,14 +36,18 @@ def gen_chars_list(string:str) -> list:
     
     return chars_lists # return 
 
-def gen_wordlist(string:str) -> list:
+def gen_wordlist(string:str,level:int) -> list:
+
     """
-    This function take as argument the username string that will be the base for the wordlist, and it returns
+    This function take as argument the username string that will be the base for the wordlist and the 'generation level'. It returns
     the wordlist.
     """
-    chars_list = gen_chars_list(string) # generate a list of characters to use
+    chars_list = gen_chars_list(string,level) # generate a list of characters to use
     wordlist = [] # wordlist
     nb_words = 1
+
+    print(chars_list)
+
     for elt in chars_list:
         nb_words *= len(elt) # evaluating the final lenght of the wordlist
     
@@ -125,21 +133,41 @@ def main() -> None:
         return
 
     try:
-        sites_list = [line.strip() for line in open(argv[2],"r").readlines()]
+        sites_list = [line.strip() for line in open(argv[2],"r").readlines()] # wordlist of sites 
     except:
         print("error : sites list not provided")
         return
     
+    try:
+        level = argv[3] #"level of username wordlist generator : 1 = only username provided by script user, 2 = letters and numbers, 3 = upcase and lowcase."
+        try:
+            level = int(level)
+        except:
+            print("error : level is not int")
+            return
+        if level >= 1 and level <= 3:
+            pass
+        else:
+            print('error : level must be in [1;3]')
+            return
+    except:
+        print("error : level not provided")
+        return
     
     try:
-        store_file = argv[3] # in case the script user provide of file name to store results
+        store_file = argv[4] # in case the script user provide of file name to store results
         open(store_file,"w").close()
         to_store = True
     except:
         to_store = False
     
-    wordlist = gen_wordlist(username) # similar usernames wordlist generation
+    if level == 1:
+        wordlist = [username]
+    else:
+        wordlist = gen_wordlist(username,level) # similar usernames wordlist generation
     
+    print(wordlist)
+
     for username in wordlist: # for each word into the wordlist
         print()
         print(username,end=" :\n")
