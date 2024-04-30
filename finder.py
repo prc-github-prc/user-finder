@@ -117,32 +117,25 @@ def main() -> None:
     """
 
     print("#### User finder ####")
-    
+
     try:
         username = argv[1] # user to search
     except:
         print("error : username not provided")
         return
+
+    try:
+        sites_list = [line.strip() for line in open(argv[2],"r").readlines()]
+    except:
+        print("error : sites list not provided")
+    
+    
     try:
         store_file = argv[2] # in case the script user provide of file name to store results
         open(store_file,"w").close()
         to_store = True
     except:
         to_store = False
-
-    """
-    list of checked websites 
-    """
-    sites_list = ["https://www.instagram.com/",
-        "https://www.facebook.com/",
-        "https://www.youtube.com/user/",
-        "https://www.reddit.com/user/",
-        "https://github.com/",
-        "https://www.twitch.tv/",
-        "https://www.pinterest.com/",
-        "https://www.tiktok.com/@",
-        "https://www.flickr.com/photos/"
-    ]
     
     wordlist = gen_wordlist(username) # similar usernames wordlist generation
     
