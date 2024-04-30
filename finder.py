@@ -128,10 +128,11 @@ def main() -> None:
         sites_list = [line.strip() for line in open(argv[2],"r").readlines()]
     except:
         print("error : sites list not provided")
+        return
     
     
     try:
-        store_file = argv[2] # in case the script user provide of file name to store results
+        store_file = argv[3] # in case the script user provide of file name to store results
         open(store_file,"w").close()
         to_store = True
     except:
