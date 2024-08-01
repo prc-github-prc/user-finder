@@ -117,6 +117,7 @@ def store(data:str,filename:str) -> None:
             
 
 def main() -> None:
+    
     """
     This is the main function.
     It generate a wordlist of potential usernames similar to the username provided by the user.
